@@ -2,8 +2,12 @@
     "extends": ["stylelint-config-standard"],
     "plugins": ["stylelint-scss", "stylelint-csstree-validator"],
     "rules": {
+      "linebreak-style": 0,
+        "global-require": 0,
+        "eslint linebreak-style": [0, "error", "windows"],
       "at-rule-no-unknown": [
         true,
+    
         {
           "ignoreAtRules": ["tailwind", "apply", "variants", "responsive", "screen"]
         }
