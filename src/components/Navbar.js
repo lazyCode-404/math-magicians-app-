@@ -1,20 +1,38 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Navbar = () => (
-  <nav className="navbar">
-    <ul>
-      <li>
-        <NavLink to="/" className={({ isActive }) => (isActive && 'active')}>Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/calculator" className={({ isActive }) => (isActive && 'active')}>Calculator</NavLink>
-      </li>
-      <li>
-        <NavLink to="/quote" className={({ isActive }) => (isActive && 'active')}>Quote</NavLink>
-      </li>
-    </ul>
-  </nav>
-);
+const NavBar = () => {
+  const links = [
+    {
+      id: 1,
+      path: '/',
+      text: 'Home',
+    },
+    {
+      id: 2,
+      path: '/calculator',
+      text: 'Calculator',
+    },
+    {
+      id: 3,
+      path: '/quotes',
+      text: 'Quotes',
+    },
+  ];
+  return (
+    <header>
+      <h1>Math Magicians</h1>
+      <nav>
+        <ul>
+          {links.map((link) => (
+            <li key={link.id}>
+              <NavLink to={link.path}>{link.text}</NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
-export default Navbar;
+export default NavBar;

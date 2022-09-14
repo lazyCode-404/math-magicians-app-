@@ -1,27 +1,50 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import './calculator.css';
 import calculate from '../logic/calculate';
-import CalcUi from './CalcUi';
 
 const Calculator = () => {
-  const [value, setValue] = useState({
-    total: 0,
+  const [data, setData] = useState({
+    total: '0',
     next: null,
     operation: null,
   });
-  const { total, next, operation } = value;
+  const btns = ['AC', '+/-', '%', '÷', '7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '+', '0', '.', '='];
 
-  // handle click function
-  const handleKeyPress = (buttonName) => {
-    setValue({ ...value, ...calculate(value, buttonName) });
+  const clickHandler = (e) => {
+    if (!e.target.name) return;
+
+    const { next, total, operation } = calculate(data, e.target.name);
+
+    if (next === null && total === null) {
+      setData({ ...data, total: '0' });
+    } else {
+      setData({ next, total, operation });
+    }
   };
-
+  const { total, next } = data;
   return (
-    <CalcUi
-      operate={handleKeyPress}
-      total={total}
-      next={next}
-      operation={operation}
-    />
+    <div className="container">
+      {next ? (
+        <div key="screen" className="screen">{next}</div>
+      ) : (
+        <div key="screen1" className="screen">{total}</div>
+      )}
+      <div key="screen2" className="btn-column">
+        {btns.map((btnName) => (
+          <button
+            onClick={clickHandler}
+            name={btnName}
+            type="button"
+            className={`btn ${btnName === '0' ? 'btn-zero' : ''} ${
+              btnName === '=' ? 'btn-equal' : ''
+            }`}
+            key={btnName}
+          >
+            {btnName}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 };
 
