@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './calculator.css';
-import calculate from '../logic/calculate';
+import './Calculator.css';
+import Calculate from '../logic/Calculate';
 
 const Calculator = () => {
   const [data, setData] = useState({
@@ -13,7 +13,7 @@ const Calculator = () => {
   const clickHandler = (e) => {
     if (!e.target.name) return;
 
-    const { next, total, operation } = calculate(data, e.target.name);
+    const { next, total, operation } = Calculate(data, e.target.name);
 
     if (next === null && total === null) {
       setData({ ...data, total: '0' });

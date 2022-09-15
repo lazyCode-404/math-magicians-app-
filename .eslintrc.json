@@ -15,11 +15,15 @@
     "extends": ["airbnb", "plugin:react/recommended"],
     "plugins": ["react"],
     "rules": {
+     "linebreak-style": ["error", "windows"] },
+     "object-curly-spacing": "off",
       "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
       "react/react-in-jsx-scope": "off",
       "import/no-unresolved": "off",
       "no-shadow": "off",
-      "linebreak-style": 0
+      "linebreak-style": ["error", (process.platform === "win32" ? "windows" : "unix")],
+      "global-require": 0,
+      "eslint linebreak-style": [0, "error", "windows"],
     },
     "ignorePatterns": [
       "dist/",
