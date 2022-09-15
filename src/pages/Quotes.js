@@ -5,7 +5,7 @@ const Quote = () => {
     {
       id: 1,
       quote: 'Mathematics is not about numbers, equations or algorithms, it is about understanding',
-      author: 'William Paul',
+      author: 'William Paul Thurston',
     },
     {
       id: 2,
