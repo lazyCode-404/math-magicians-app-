@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import calculate from '../logic/calculate';
+import './Calculator.css';
+import Calculate from '../logic/Calculate';
 
 const Calculator = () => {
   const [data, setData] = useState({
@@ -12,7 +13,7 @@ const Calculator = () => {
   const clickHandler = (e) => {
     if (!e.target.name) return;
 
-    const { next, total, operation } = calculate(data, e.target.name);
+    const { next, total, operation } = Calculate(data, e.target.name);
 
     if (next === null && total === null) {
       setData({ ...data, total: '0' });
@@ -24,11 +25,11 @@ const Calculator = () => {
   return (
     <div className="container">
       {next ? (
-        <div className="screen">{next}</div>
+        <div key="screen" className="screen">{next}</div>
       ) : (
-        <div className="screen">{total}</div>
+        <div key="screen1" className="screen">{total}</div>
       )}
-      <div className="btn-column">
+      <div key="screen2" className="btn-column">
         {btns.map((btnName) => (
           <button
             onClick={clickHandler}
